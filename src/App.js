@@ -12,6 +12,9 @@ function App() {
         <h2>Apostas</h2>
         <span>123456</span>
       </main>
+      <footer>
+
+      </footer>
     </div>
   );
 }
