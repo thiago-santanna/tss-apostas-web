@@ -1,22 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { formatLocalDate } from '../../utils/formatDate';
 
 function Apostas() {
-  const URL_BASE_PROD = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
+  const URL_BASE_PROD = process.env.REACT_APP_BACKEND_URL ?
+    process.env.REACT_APP_BACKEND_URL :
+    'http://localhost:8080'
 
-
+  axios.defaults.baseURL = URL_BASE_PROD
   const [apostas, setApostas] = useState([])
   const [quantidadeAposta, setQuantidadeAposta] = useState(1)
 
-  console.log('URL_BASE_PROD')
-  console.log(URL_BASE_PROD)
-
   useEffect(() => {
-    axios.get(`${URL_BASE_PROD}/gerar-apostas/${quantidadeAposta}`)
+    axios.get(`/gerar-apostas/${quantidadeAposta}`)
       .then(response => {
         setApostas(response.data);
       })
-  }, [])
+  }, [quantidadeAposta])
 
   return (
     <div className="table-responsive">
@@ -28,10 +28,14 @@ function Apostas() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>22/04/2021</td>
-            <td>27,37,11,10,47,14</td>
-          </tr>
+          {
+            apostas?.map(aposta => (
+              <tr key={ }>
+                <td>{formatLocalDate(aposta.dataAposta, 'dd/MM/yyyy')}</td>
+                <td>{aposta.dezenas.map(dezena => `${dezena} `)}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>
