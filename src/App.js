@@ -9,21 +9,24 @@ function App() {
     <>
       <NavBar />
       <div className="container">
-        <p className="">Geração de apostas</p>
-        <main className="content">
-          <form className="for">
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">Quantidade de apostas</label>
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-              <div id="emailHelp" className="form-text">Informe a Quantidade de apostas que deseja gerar. Boa sorte!</div>
-            </div>
+        <main>
+          <div>
+            <form>
+              <div className="mb-3 row ">
+                <div className="mx-auto col-auto d-flex flex-column justify-content-center">
+                  <input placeholder="Quantidade de jogos" type="number" className="form-control" id="inputAposta" aria-describedby="qtdAposta" min="1" />
+                  <div className="col form-text" id="qtdAposta" >
+                    Informe quantos jogos quer gerar
+                  </div>
+                  <button className="btn btn-success w-auto mt-3">
+                    Gerar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
 
-            <div className="d-flex gap-3 btn-group" role="group" aria-label="Basic example">
-              <button type="button" className="btn btn-primary">Gerar apostas</button>
-              <button type="button" className="btn btn-danger">Limpar apostas</button>
-            </div>
-          </form>
-          <Apostas />
+          <Apostas quantidadeApostaProps={7} />
         </main>
       </div>
       <Footer />
