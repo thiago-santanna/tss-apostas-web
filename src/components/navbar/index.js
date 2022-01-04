@@ -1,4 +1,3 @@
-import logo from '../../logo.svg';
 import cash from '../../cash-coin.svg'
 
 function NavBar() {
